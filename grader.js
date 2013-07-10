@@ -40,6 +40,10 @@ var cheerioHtmlFile = function(htmlfile){
   return cheerio.load(fs.readFileSync(htmlfile));
 };
 
+var loadChecks = function(checksfile){
+  return JSON.parse(fs.readFileSync(checksfile));
+};
+
 var checkHtmlFile = function(htmlfile, checksfile){
   $ = cheerioHtmlFile(htmlfile);
   var checks = loadChecks(checksfile).sort();
@@ -63,7 +67,7 @@ if(require.main == module){
   .parse(process.argv);
 
   var checkJson = checkHtmlFile(program.file, program.checks);
-  var outJson = JSON.stringify(checksJson, null, 4);
+  var outJson = JSON.stringify(checkJson, null, 4);
   console.log(outJson);
 } else {
   exports.checkHtmlFile = checkHtmlFile;
