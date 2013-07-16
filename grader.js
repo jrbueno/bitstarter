@@ -64,7 +64,7 @@ var checkUrl = function(url, checksfile){
       console.error('Error:' + result.message);
     } else {
       $ = loadCheerio(result);
-      displayChecks(url,runChecks(checksfile));
+      displayChecks(runChecks(checksfile));
     }
   });
 };
@@ -85,9 +85,8 @@ var runChecks = function(checksfile){
   return out;
 };
 
-var displayChecks = function(origin, checksJson){
+var displayChecks = function(checksJson){
   var outJson = JSON.stringify(checksJson,null,4);
-  console.log("Checks for %s", origin);
   console.log(outJson);
 };
 
@@ -109,7 +108,7 @@ if(require.main == module){
   } else { 
     if(program.file){
       checkJson = checkHtmlFile(program.file, program.checks);
-      displayChecks(program.file, checkJson);
+      displayChecks(checkJson);
     };
     if(program.url){
       checkJson = checkUrl(program.url, program.checks);
