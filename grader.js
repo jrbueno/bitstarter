@@ -58,7 +58,6 @@ var grabHtml = function(url){
 };
 
 var checkUrl = function(url, checksfile){
-  var htmldata; 
   return rest.get(url).on('complete', function(result) {
     if (result instanceof Error) {
       console.error('Error:' + result.message);
